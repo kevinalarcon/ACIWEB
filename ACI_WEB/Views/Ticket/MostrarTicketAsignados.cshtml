@@ -1,0 +1,115 @@
+﻿@model IEnumerable<ACI_WEB.Models.MisTickets>
+@{
+    ViewBag.Title = "MostrarTicketAsignados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .tarjeta {
+        background-color: white;
+    }
+</style>
+
+
+<div class="col-md-12">
+    <div id="divMensaje" class="alert alert-success" hidden>
+        <button type="button" aria-hidden="true" class="close">
+            <i class="now-ui-icons ui-1_simple-remove"></i>
+        </button>
+        <label id="lblMensaje">Su ticket se ha registrado correctamente.</label>
+    </div>
+    <div class="card tarjeta">
+        <div class="card-header">
+            <h4 class="card-title"> Tickets Asignados a Mi</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table">
+                    <thead class=" text-primary">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ticketdetalle.idticket)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ticketdetalle.asunto)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ticketdetalle.fechaingreso)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ticketdetalle.estado)
+                            </th>
+                            <th>
+                                Tipo
+                            </th>
+                            <th>
+                                Solicitante
+                            </th>
+                            <th>
+                                Equipo
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.ticketdetalle.idticket
+                                </td>
+                                <td>
+                                    @item.ticketdetalle.asunto
+                                </td>
+                                <td>
+                                    @item.ticketdetalle.fechaingreso
+                                </td>
+                                <td>
+                                    @if (item.ticketdetalle.estado == "Pendiente")
+                                    {
+                                        <span class="alert alert-warning">@item.ticketdetalle.estado</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="alert alert-success">@item.ticketdetalle.estado</span>
+                                    }
+
+                                </td>
+                                <td>
+                                    @if (item.tipodetalle.codtipo == 1)
+                                    {
+                                        <span class="alert alert-warning">@item.tipodetalle.tipo1</span>
+                                    }
+                                    else if (item.tipodetalle.codtipo == 2)
+                                    {
+                                        <span class="alert alert-danger">@item.tipodetalle.tipo1</span>
+                                    }
+                                    else if (item.tipodetalle.codtipo == 3)
+                                    {
+                                        <span class="alert alert-info">@item.tipodetalle.tipo1</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="alert alert-primary">@item.tipodetalle.tipo1</span>
+                                    }
+                                </td>
+                                <td>
+                                    @item.usuariodetalle.nombres
+                                </td>
+                                <td>
+                                    @item.equipodetalle.equipo1
+                                </td>
+                                <td>
+                                    <a class="btn btn-success" href="@Url.Action("AtenderTicket", "Ticket", new { idticket = @item.ticketdetalle.idticket })"><i class="now-ui-icons gestures_tap-01"> Atender Ticket</i></a>
+                                    <a class="btn btn-primary" href="@Url.Action("DerivarTicket", "Ticket", new { idticket = @item.ticketdetalle.idticket })"><i class="now-ui-icons arrows-1_refresh-69"> Derivar Ticket</i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@model ACI_WEB.Models.Usuario  
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Bienvendios al ACI WEB</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="connective login form a Flat Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+    <script type="application/x-javascript">
+         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Meta_tag_Keywords -->
+    <link href="~/fonts/style.css" rel="stylesheet" />
+    <link href="~/fonts/font-awesome.min.css" rel="stylesheet" />
+    <!--web_fonts-->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900&amp;subset=latin-ext" rel="stylesheet">
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <style>
+        .field-validation-error{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div class="form">
+        <h1>ACI WEB</h1>
+        <div class="form-content">
+            @using (Html.BeginForm("Autorizacion", "Login", FormMethod.Post))
+            {
+
+                <div class="form-info">
+                    <h2>Iniciar Sesión</h2>
+                </div>
+                <div class="email-w3l">
+                    <span class="i1"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    @Html.EditorFor(model => model.matricula, new { htmlAttributes = new { @class = "email", placeholder = @Html.DisplayNameFor(m => m.matricula) } })
+                    @Html.ValidationMessageFor(model => model.matricula)
+                </div>
+
+                <div class="pass-w3l">
+                    <span class="i2"><i class="fa fa-unlock" aria-hidden="true"></i></span>
+                    @Html.EditorFor(model => model.pass, new { htmlAttributes = new { @class = "pass", placeholder = @Html.DisplayNameFor(m => m.pass) } })
+                    @Html.ValidationMessageFor(model => model.pass)
+                </div>
+
+                <div class="pass-w3l">
+                    <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                </div>
+
+                <div class="submit-agileits">
+                    <input class="login" type="submit" value="Ingresar">
+                </div>
+                }
+            </div>
+    </div>
+    <!---728x90--->
+    <footer>&copy; 2020 TI Soluciones de Pago. Todos los derechos reservados | Desarrollado por <a href="#">Kevin Alarcon</a></footer>
+    <!---728x90--->
+</body>
+</html>

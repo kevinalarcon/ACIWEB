@@ -1,0 +1,177 @@
+﻿@model ACI_WEB.Models.MisTickets
+
+@{
+    ViewBag.Title = "VerTicketDetalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .tarjeta {
+        background-color: white;
+    }
+</style>
+
+
+<div class="col-md-8">
+    <div class="card tarjeta">
+        <div class="card-header">
+            <h5 class="title">Detalles del Ticket Ingresado</h5>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                        <div class="form-group">
+                            <label>Ticket</label>
+                            <input type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.idticket">
+                        </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                        <div class="form-group">
+                            <label>Fecha de Ingreso</label>
+                            <input type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.fechaingreso">
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                        <div class="form-group">
+                            <label>Equipo Asignado</label>
+                            <input type="email" class="form-control" readonly="readonly" value="@Model.equipodetalle.equipo1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 pr-1">
+                        <div class="form-group">
+                            <label>Aplicativo / Cartera</label>
+                            <input type="text" class="form-control" readonly="readonly" value="@Model.aplicativodetalle.aplicativo1">
+                        </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                        <div class="form-group">
+
+                            <label>Tipo</label>
+                            <input type="text" class="form-control" readonly="readonly" value="@Model.tipodetalle.tipo1">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                        <div class="form-group">
+                            @if (Model.ticketdetalle.codtipo == 4)
+                            {
+                                <label>Matricula Modelo</label>
+                                <input type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.matricula_modelo">
+                            }
+                            else
+                            {
+                                <label>Sub Tipo</label>
+                                <input type="text" class="form-control" readonly="readonly" value="">
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Asunto</label>
+                            <input type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.asunto">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Detalle</label>
+                            <textarea rows="4" cols="80" class="form-control" readonly="readonly">@Model.ticketdetalle.descripcion</textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="card card-user tarjeta">
+        <div class="image">
+            <h5 class="title">Usuario Asignado</h5>
+
+        </div>
+        <div class="card-body">
+            <div class="author">
+                <a href="#">
+                    <img class="avatar border-gray" src="@Url.Content(@Model.usuariodetalle.imgpath)" alt="...">
+                    <h5 class="title">@Model.usuariodetalle.nombres</h5>
+                    <h5 class="title">@string.Concat(Model.usuariodetalle.ap_paterno, " ", Model.usuariodetalle.ap_materno)</h5>
+                </a>
+                <p class="description" style="color:black">
+                    @Model.usuariodetalle.puesto
+                </p>
+            </div>
+            <p class="description text-center" style="color:black">
+
+                <label>Anexo: 92519</label> <br />
+                <label>Sede: San Isidro</label>
+            </p>
+        </div>
+        <hr>
+
+    </div>
+</div>
+@if (Model.ticketdetalle.estado == "Atendido")
+{
+    <div class="col-md-12">
+        <div class="card tarjeta">
+            <div class="card-header">
+                <h5 class="title">Detalles de la solución del Ticket</h5>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-3 pr-1">
+                            <div class="form-group">
+                                <label>Fecha de Atención</label>
+                                <input type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.fechaatencion">
+                            </div>
+                        </div>
+                    </div>
+                    @if (Model.ticketdetalle.codtipo == 2)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Causa Raiz de la Incidencia</label>
+                                    <input type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.causa">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Accion Inmediata</label>
+                                    <input type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.accion_inmediata">
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Respuesta del Especialista</label>
+                                <textarea rows="4" cols="80" class="form-control" readonly="readonly">@Model.ticketdetalle.comentariofinal</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <button class="btn btn-success" id="btnGuardar" type="button"><span class="now-ui-icons emoticons_satisfied"></span> ¿Desea dar Feedback a la atención?</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+

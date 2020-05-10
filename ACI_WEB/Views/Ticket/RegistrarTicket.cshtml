@@ -1,0 +1,111 @@
+﻿@model ACI_WEB.Models.Ticket
+
+@{
+    ViewBag.Title = "RegistrarTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .tarjeta {
+        background-color: white;
+    }
+</style>
+
+<div class="col-md-12">
+    <div class="card tarjeta">
+        <div class="card-header">
+            <h5 class="title">Registrar Tickets</h5>
+        </div>
+        <div class="card-body">
+            @*@using (Html.BeginForm())
+                {*@
+            @*<form action="RegistrarTicket" method="post" onsubmit="return Validar()" >*@
+            <form>
+                @*@Html.AntiForgeryToken()*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            <label>Equipo</label>
+                            <!--<input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">-->
+                            <select id="comboboxEquipo" class="form-control" name="codequipo">
+                                <option value="-1">Elija un equipo</option>
+                                @foreach (var eq in ViewBag.equipo)
+                                {
+                                    <option value="@eq.codequipo">@eq.equipo1</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                        <div class="form-group">
+                            <label>Aplicativo / Cartera</label>
+                            <select id="comboboxAplicativo" class="form-control" name="codaplicativo"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @*<div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            <label>Tipo</label>
+                            <select id="comboboxTipo" class="form-control" name="codtipo">
+                                <option value="-1">Elija un tipo de ticket</option>
+                                @foreach (var eq in ViewBag.tipo)
+                                {
+                                    <option value="@eq.codtipo">@eq.tipo1</option>
+                                }
+                            </select>
+                        </div>
+                    </div>*@
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            <label>Tipo</label>
+                            <select id="comboboxTipo" class="form-control" name="codtipo"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-1" id="subtipo" hidden>
+                        <div class="form-group">
+                            <label>Subtipo</label>
+                            <select id="comboboxSubTipo" class="form-control" name="codsubtipo"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-1" id="matricula_modelo" hidden>
+                        <div class="form-group">
+                            <label>Matricula Modelo</label>
+                            <input id="txtmatriculamodelo" type="text" class="form-control" placeholder="Ingrese el título del mensaje" value="" name="txtmatriculamodelo">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Asunto</label>
+                            <input id="txtasunto" type="text" class="form-control" placeholder="Ingrese el título del mensaje" value="" name="asunto">
+                            @Html.ValidationMessageFor(model => model.asunto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Detalle</label>
+                            <textarea id="txtdetalle" rows="4" cols="80" class="form-control" placeholder="Detalle el asunto del ticket" value="" name="descripcion"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+
+                            @*<input type="submit" value="Registrar" class="btn btn-default" id="btnGuardar" />*@
+                            <button class="btn btn-success" id="btnGuardar" type="button"><span class="glyphicon glyphicon-floppy-disk"></span> Registrar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+            @*}*@
+        </div>
+    </div>
+</div>

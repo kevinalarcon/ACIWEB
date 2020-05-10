@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "MostrarAyuda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .tarjeta {
+        background-color: white;
+    }
+</style>
+
+<div class="col-md-12">
+    <div class="card tarjeta">
+        <div class="card-header">
+            <h5 class="title">¿Como Puedo Registrar un Ticket?</h5>
+        </div>
+        <div class="card-body">
+            <div class="col-md-8">
+                <p>
+
+                    Para registrar un ticket usted debe ingresar a la opción <span class="alert alert-warning"><span class="now-ui-icons ui-1_email-85"></span> CREAR TICKET</span> ,
+                    luego deberá completar los siguientes campos
+
+                </p>
+
+                <ul>
+                    <li><p><b>Equipo</b>, Donde deberá elegir a que equipo va dirigido el ticket.</p></li>
+                    <li><p><b>Aplicativo</b>, (Si es para TI) o Cartera (Si es para Asignacion)</p></li>
+                    <li><p><b>Tipo</b>, donde debe indicar el tipo de ticket que desea crear (Consulta, Orden de Trabajo, Incidencia, Acceso)</p></li>
+                    <li><p><b>SubTipo</b>, donde puede indicar a detalle el tipo seleccionado (Este campo es opcional).</p></li>
+                    <li><p><b>Matricula Modelo</b>, Si ha elegido el Tipo Acceso, debe indicar una matrícula modelo con el mismo perfil que usted y que cuente con los accesos que usted necesita.</p></li>
+                    <li><p><b>Asunto</b></p>, Aqui se debe ingresar la cabecera o resumen del ticket que está creando.</li>
+                    <li><p><b>Descripcion</b></p>, Aquí puede detallar todo lo necesario que el especialista debe tener en cuenta para atender su ticket satisfactoriamente.</li>
+                </ul>
+
+                <p>
+
+                    En caso de que falte alguno de estos campos, se le notificarà cuales son necesarios para registrar su ticket en la parte superior.
+                    Una vez ingresado todos estos campos, deberá seleccionar la opción <span class="glyphicon glyphicon-floppy-disk"></span><b>Guardar</b>. Acto seguido
+                    el proceso le indicará cual es el ticket que se ha creado en la parte superior derecha.
+                    <img src="~/AppFiles/Images/ticketingresado.png" />
+
+                    Caso contrario comunicarse con el equipo de TI al buzón <b>ticobranza@bcp.com.pe</b> o al teléfono de soporte <b>943428767.</b>
+
+                </p>
+
+            </div>
+
+            <div class="col-md-4">
+                <img src="~/AppFiles/Images/ayuda1.png" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="card tarjeta">
+        <div class="card-header">
+            <h5 class="title">¿Como puedo ver los Tickets que he creado y hacerles seguimiento?</h5>
+        </div>
+        <div class="col-md-4">
+            <img src="~/AppFiles/Images/ayuda3.png" />
+        </div>
+        <div class="col-md-8">
+            <p>
+                Para ver todos los tickets que he ingresado puedo ir a la opción <span class="alert alert-warning"><span class="now-ui-icons design_bullet-list-67"></span> MIS TICKETS</span> ,
+                donde se visualizará una tabla con los siguientes campos
+            </p>
+
+            <ul>
+                <li><p><b>Ticket</b>, Indica el ticket que ha creado y como se puede identificar.</p></li>
+                <li><p><b>Asunto</b>, Cabecera del ticket creado</p></li>
+                <li><p><b>Fecha</b>, La fecha en la cual se creó el ticket</p></li>
+                <li><p><b>Estado</b>, Indica los estados del ticket <span class="alert alert-warning">Pendiente</span> o <span class="alert alert-success">Atendido</span>.</p></li>
+                <li><p><b>Equipo</b>, Equipo al cual se ha dirigido para atender el ticket.</p></li>
+                <li><p><b>Ver</b>, Se puede ver mediante el ícono <span class="alert alert-warning"><span class="now-ui-icons education_glasses"></span></span></p></li>
+            </ul>
+
+            <p>
+                Al seleccionar la opción ver, se podrá ver una vista con detalle de todos los datos del ticket, asi como el especialista
+                que atenderá el ticket. Si el ticket ha sido atendido, se podrá revisar los datos que el especialista ha respondido al
+                momento de atender el ticket.
+            </p>
+
+            <p>
+                Si tiene alguna consulta adicional o consulta del estado mas detallado del ticket, puede contactarse con el especialista
+                que se le asignó. <b>Debe tener en cuenta que la atención de un ticket tiene como tiempo 3 días</b>
+            </p>
+
+        </div>
+    </div>
+</div>

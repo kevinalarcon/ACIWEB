@@ -1,0 +1,726 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ACIWEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aplicativo">
+          <Key>
+            <PropertyRef Name="codaplicativo" />
+          </Key>
+          <Property Name="codaplicativo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aplicativo" Type="varchar" MaxLength="50" />
+          <Property Name="codequipo" Type="int" />
+          <Property Name="matricula" Type="varchar" MaxLength="6" />
+          <Property Name="backup1" Type="varchar" MaxLength="6" />
+          <Property Name="backup2" Type="varchar" MaxLength="6" />
+        </EntityType>
+        <EntityType Name="Derivaciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idticket" Type="varchar" MaxLength="20" />
+          <Property Name="matricula_origen" Type="varchar" MaxLength="6" />
+          <Property Name="matricula_nueva" Type="varchar" MaxLength="6" />
+          <Property Name="motivo" Type="varchar" MaxLength="100" />
+          <Property Name="fechaderivacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="codequipo" />
+          </Key>
+          <Property Name="codequipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="equipo" Type="varchar" MaxLength="50" />
+          <Property Name="gerencia" Type="varchar" MaxLength="50" />
+          <Property Name="area" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="codperfil" />
+          </Key>
+          <Property Name="codperfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="perfil" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Responsable">
+          <Key>
+            <PropertyRef Name="codresponsable" />
+          </Key>
+          <Property Name="codresponsable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="responsable" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SubTipo">
+          <Key>
+            <PropertyRef Name="codsubtipo" />
+          </Key>
+          <Property Name="codsubtipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subtipo" Type="varchar" MaxLength="50" />
+          <Property Name="codtipo" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="idticket" />
+          </Key>
+          <Property Name="idticket" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="matricula" Type="varchar" MaxLength="6" />
+          <Property Name="codequipo" Type="int" />
+          <Property Name="codaplicativo" Type="int" />
+          <Property Name="codtipo" Type="int" />
+          <Property Name="codsubtipo" Type="int" />
+          <Property Name="asunto" Type="varchar" MaxLength="100" />
+          <Property Name="descripcion" Type="varchar" MaxLength="400" />
+          <Property Name="fechaingreso" Type="datetime" />
+          <Property Name="fechaatencion" Type="datetime" />
+          <Property Name="estado" Type="varchar" MaxLength="20" />
+          <Property Name="comentariofinal" Type="varchar" MaxLength="400" />
+          <Property Name="feedback" Type="int" />
+          <Property Name="comentariofeedback" Type="varchar" MaxLength="400" />
+          <Property Name="matricula_responsable" Type="varchar" MaxLength="6" />
+          <Property Name="causa" Type="varchar" MaxLength="100" />
+          <Property Name="accion_inmediata" Type="varchar" MaxLength="100" />
+          <Property Name="codresponsable" Type="int" />
+          <Property Name="matricula_modelo" Type="varchar" MaxLength="6" />
+          <Property Name="cantidad_clientes" Type="int" />
+          <Property Name="cantidad_cuentas" Type="int" />
+          <Property Name="deuda_vencida" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="deuda_total" Type="numeric" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="Tipo">
+          <Key>
+            <PropertyRef Name="codtipo" />
+          </Key>
+          <Property Name="codtipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" />
+          <Property Name="codequipo" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="matricula" />
+          </Key>
+          <Property Name="matricula" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ap_paterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ap_materno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="puesto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="imgpath" Type="varchar" MaxLength="200" />
+          <Property Name="codequipo" Type="int" />
+          <Property Name="codperfil" Type="int" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <Association Name="fk_codequipoapl">
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
+          <End Role="Aplicativo" Type="Self.Aplicativo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="codequipo" />
+            </Principal>
+            <Dependent Role="Aplicativo">
+              <PropertyRef Name="codequipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codequipotkt">
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="codequipo" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="codequipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codequipousu">
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="codequipo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="codequipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codperfilusu">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="codperfil" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="codperfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codtipo">
+          <End Role="Tipo" Type="Self.Tipo" Multiplicity="0..1" />
+          <End Role="SubTipo" Type="Self.SubTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo">
+              <PropertyRef Name="codtipo" />
+            </Principal>
+            <Dependent Role="SubTipo">
+              <PropertyRef Name="codtipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codtipotkt">
+          <End Role="Tipo" Type="Self.Tipo" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo">
+              <PropertyRef Name="codtipo" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="codtipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_matriculaapl">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Aplicativo" Type="Self.Aplicativo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="matricula" />
+            </Principal>
+            <Dependent Role="Aplicativo">
+              <PropertyRef Name="matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_matriculatkt">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="matricula" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_subcodtipotkt">
+          <End Role="SubTipo" Type="Self.SubTipo" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubTipo">
+              <PropertyRef Name="codsubtipo" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="codsubtipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ACIWEBModelStoreContainer">
+          <EntitySet Name="Aplicativo" EntityType="Self.Aplicativo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Derivaciones" EntityType="Self.Derivaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Responsable" EntityType="Self.Responsable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubTipo" EntityType="Self.SubTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo" EntityType="Self.Tipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_codequipoapl" Association="Self.fk_codequipoapl">
+            <End Role="Equipo" EntitySet="Equipo" />
+            <End Role="Aplicativo" EntitySet="Aplicativo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codequipotkt" Association="Self.fk_codequipotkt">
+            <End Role="Equipo" EntitySet="Equipo" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codequipousu" Association="Self.fk_codequipousu">
+            <End Role="Equipo" EntitySet="Equipo" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codperfilusu" Association="Self.fk_codperfilusu">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codtipo" Association="Self.fk_codtipo">
+            <End Role="Tipo" EntitySet="Tipo" />
+            <End Role="SubTipo" EntitySet="SubTipo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codtipotkt" Association="Self.fk_codtipotkt">
+            <End Role="Tipo" EntitySet="Tipo" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="fk_matriculaapl" Association="Self.fk_matriculaapl">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Aplicativo" EntitySet="Aplicativo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_matriculatkt" Association="Self.fk_matriculatkt">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="fk_subcodtipotkt" Association="Self.fk_subcodtipotkt">
+            <End Role="SubTipo" EntitySet="SubTipo" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ACIWEBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Aplicativo">
+          <Key>
+            <PropertyRef Name="codaplicativo" />
+          </Key>
+          <Property Name="codaplicativo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aplicativo1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="codequipo" Type="Int32" />
+          <Property Name="matricula" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Equipo" Relationship="Self.fk_codequipoapl" FromRole="Aplicativo" ToRole="Equipo" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_matriculaapl" FromRole="Aplicativo" ToRole="Usuario" />
+          <Property Name="backup1" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="backup2" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="codequipo" />
+          </Key>
+          <Property Name="codequipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="equipo1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gerencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Aplicativo" Relationship="Self.fk_codequipoapl" FromRole="Equipo" ToRole="Aplicativo" />
+          <NavigationProperty Name="Ticket" Relationship="Self.fk_codequipotkt" FromRole="Equipo" ToRole="Ticket" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_codequipousu" FromRole="Equipo" ToRole="Usuario" />
+          <Property Name="estado" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="codperfil" />
+          </Key>
+          <Property Name="codperfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="perfil1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_codperfilusu" FromRole="Perfil" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="SubTipo">
+          <Key>
+            <PropertyRef Name="codsubtipo" />
+          </Key>
+          <Property Name="codsubtipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subtipo1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="codtipo" Type="Int32" />
+          <NavigationProperty Name="Tipo" Relationship="Self.fk_codtipo" FromRole="SubTipo" ToRole="Tipo" />
+          <NavigationProperty Name="Ticket" Relationship="Self.fk_subcodtipotkt" FromRole="SubTipo" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="idticket" />
+          </Key>
+          <Property Name="idticket" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="matricula" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="codequipo" Type="Int32" />
+          <Property Name="codaplicativo" Type="Int32" />
+          <Property Name="codtipo" Type="Int32" />
+          <Property Name="codsubtipo" Type="Int32" />
+          <Property Name="asunto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="fechaingreso" Type="DateTime" Precision="3" />
+          <Property Name="fechaatencion" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="comentariofinal" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="feedback" Type="Int32" />
+          <Property Name="comentariofeedback" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Equipo" Relationship="Self.fk_codequipotkt" FromRole="Ticket" ToRole="Equipo" />
+          <NavigationProperty Name="SubTipo" Relationship="Self.fk_subcodtipotkt" FromRole="Ticket" ToRole="SubTipo" />
+          <NavigationProperty Name="Tipo" Relationship="Self.fk_codtipotkt" FromRole="Ticket" ToRole="Tipo" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_matriculatkt" FromRole="Ticket" ToRole="Usuario" />
+          <Property Name="matricula_responsable" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="causa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="accion_inmediata" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="codresponsable" Type="Int32" />
+          <Property Name="matricula_modelo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_clientes" Type="Int32" />
+          <Property Name="cantidad_cuentas" Type="Int32" />
+          <Property Name="deuda_vencida" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="deuda_total" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="Tipo">
+          <Key>
+            <PropertyRef Name="codtipo" />
+          </Key>
+          <Property Name="codtipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SubTipo" Relationship="Self.fk_codtipo" FromRole="Tipo" ToRole="SubTipo" />
+          <NavigationProperty Name="Ticket" Relationship="Self.fk_codtipotkt" FromRole="Tipo" ToRole="Ticket" />
+          <Property Name="codequipo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="matricula" />
+          </Key>
+          <Property Name="matricula" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ap_paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ap_materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="puesto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imgpath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="codequipo" Type="Int32" />
+          <Property Name="codperfil" Type="Int32" />
+          <NavigationProperty Name="Aplicativo" Relationship="Self.fk_matriculaapl" FromRole="Usuario" ToRole="Aplicativo" />
+          <NavigationProperty Name="Equipo" Relationship="Self.fk_codequipousu" FromRole="Usuario" ToRole="Equipo" />
+          <NavigationProperty Name="Perfil" Relationship="Self.fk_codperfilusu" FromRole="Usuario" ToRole="Perfil" />
+          <NavigationProperty Name="Ticket" Relationship="Self.fk_matriculatkt" FromRole="Usuario" ToRole="Ticket" />
+          <Property Name="estado" Type="Int32" />
+        </EntityType>
+        <Association Name="fk_codequipoapl">
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
+          <End Role="Aplicativo" Type="Self.Aplicativo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="codequipo" />
+            </Principal>
+            <Dependent Role="Aplicativo">
+              <PropertyRef Name="codequipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_matriculaapl">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Aplicativo" Type="Self.Aplicativo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="matricula" />
+            </Principal>
+            <Dependent Role="Aplicativo">
+              <PropertyRef Name="matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codequipotkt">
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="codequipo" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="codequipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codequipousu">
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="codequipo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="codequipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codperfilusu">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="codperfil" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="codperfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codtipo">
+          <End Role="Tipo" Type="Self.Tipo" Multiplicity="0..1" />
+          <End Role="SubTipo" Type="Self.SubTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo">
+              <PropertyRef Name="codtipo" />
+            </Principal>
+            <Dependent Role="SubTipo">
+              <PropertyRef Name="codtipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_subcodtipotkt">
+          <End Role="SubTipo" Type="Self.SubTipo" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubTipo">
+              <PropertyRef Name="codsubtipo" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="codsubtipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codtipotkt">
+          <End Role="Tipo" Type="Self.Tipo" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo">
+              <PropertyRef Name="codtipo" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="codtipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_matriculatkt">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="matricula" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Aplicativo" EntityType="Self.Aplicativo" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" />
+          <EntitySet Name="SubTipo" EntityType="Self.SubTipo" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" />
+          <EntitySet Name="Tipo" EntityType="Self.Tipo" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="fk_codequipoapl" Association="Self.fk_codequipoapl">
+            <End Role="Equipo" EntitySet="Equipo" />
+            <End Role="Aplicativo" EntitySet="Aplicativo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_matriculaapl" Association="Self.fk_matriculaapl">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Aplicativo" EntitySet="Aplicativo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codequipotkt" Association="Self.fk_codequipotkt">
+            <End Role="Equipo" EntitySet="Equipo" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codequipousu" Association="Self.fk_codequipousu">
+            <End Role="Equipo" EntitySet="Equipo" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codperfilusu" Association="Self.fk_codperfilusu">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codtipo" Association="Self.fk_codtipo">
+            <End Role="Tipo" EntitySet="Tipo" />
+            <End Role="SubTipo" EntitySet="SubTipo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_subcodtipotkt" Association="Self.fk_subcodtipotkt">
+            <End Role="SubTipo" EntitySet="SubTipo" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codtipotkt" Association="Self.fk_codtipotkt">
+            <End Role="Tipo" EntitySet="Tipo" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="fk_matriculatkt" Association="Self.fk_matriculatkt">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <EntitySet Name="Derivaciones" EntityType="ACIWEBModel.Derivaciones" />
+          <EntitySet Name="Responsable" EntityType="ACIWEBModel.Responsable" />
+        </EntityContainer>
+        <EntityType Name="Derivaciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idticket" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="matricula_origen" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="matricula_nueva" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="motivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fechaderivacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Responsable">
+          <Key>
+            <PropertyRef Name="codresponsable" />
+          </Key>
+          <Property Name="codresponsable" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="responsable1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ACIWEBModelStoreContainer" CdmEntityContainer="DBModel">
+          <EntitySetMapping Name="Aplicativo">
+            <EntityTypeMapping TypeName="ACIWEBModel.Aplicativo">
+              <MappingFragment StoreEntitySet="Aplicativo">
+                <ScalarProperty Name="backup2" ColumnName="backup2" />
+                <ScalarProperty Name="backup1" ColumnName="backup1" />
+                <ScalarProperty Name="codaplicativo" ColumnName="codaplicativo" />
+                <ScalarProperty Name="aplicativo1" ColumnName="aplicativo" />
+                <ScalarProperty Name="codequipo" ColumnName="codequipo" />
+                <ScalarProperty Name="matricula" ColumnName="matricula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipo">
+            <EntityTypeMapping TypeName="ACIWEBModel.Equipo">
+              <MappingFragment StoreEntitySet="Equipo">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="codequipo" ColumnName="codequipo" />
+                <ScalarProperty Name="equipo1" ColumnName="equipo" />
+                <ScalarProperty Name="gerencia" ColumnName="gerencia" />
+                <ScalarProperty Name="area" ColumnName="area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfil">
+            <EntityTypeMapping TypeName="ACIWEBModel.Perfil">
+              <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="codperfil" ColumnName="codperfil" />
+                <ScalarProperty Name="perfil1" ColumnName="perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubTipo">
+            <EntityTypeMapping TypeName="ACIWEBModel.SubTipo">
+              <MappingFragment StoreEntitySet="SubTipo">
+                <ScalarProperty Name="codsubtipo" ColumnName="codsubtipo" />
+                <ScalarProperty Name="subtipo1" ColumnName="subtipo" />
+                <ScalarProperty Name="codtipo" ColumnName="codtipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ACIWEBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket">
+            <EntityTypeMapping TypeName="ACIWEBModel.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="deuda_total" ColumnName="deuda_total" />
+                <ScalarProperty Name="deuda_vencida" ColumnName="deuda_vencida" />
+                <ScalarProperty Name="cantidad_cuentas" ColumnName="cantidad_cuentas" />
+                <ScalarProperty Name="cantidad_clientes" ColumnName="cantidad_clientes" />
+                <ScalarProperty Name="matricula_modelo" ColumnName="matricula_modelo" />
+                <ScalarProperty Name="codresponsable" ColumnName="codresponsable" />
+                <ScalarProperty Name="accion_inmediata" ColumnName="accion_inmediata" />
+                <ScalarProperty Name="causa" ColumnName="causa" />
+                <ScalarProperty Name="matricula_responsable" ColumnName="matricula_responsable" />
+                <ScalarProperty Name="idticket" ColumnName="idticket" />
+                <ScalarProperty Name="matricula" ColumnName="matricula" />
+                <ScalarProperty Name="codequipo" ColumnName="codequipo" />
+                <ScalarProperty Name="codaplicativo" ColumnName="codaplicativo" />
+                <ScalarProperty Name="codtipo" ColumnName="codtipo" />
+                <ScalarProperty Name="codsubtipo" ColumnName="codsubtipo" />
+                <ScalarProperty Name="asunto" ColumnName="asunto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaingreso" ColumnName="fechaingreso" />
+                <ScalarProperty Name="fechaatencion" ColumnName="fechaatencion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="comentariofinal" ColumnName="comentariofinal" />
+                <ScalarProperty Name="feedback" ColumnName="feedback" />
+                <ScalarProperty Name="comentariofeedback" ColumnName="comentariofeedback" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo">
+            <EntityTypeMapping TypeName="ACIWEBModel.Tipo">
+              <MappingFragment StoreEntitySet="Tipo">
+                <ScalarProperty Name="codequipo" ColumnName="codequipo" />
+                <ScalarProperty Name="codtipo" ColumnName="codtipo" />
+                <ScalarProperty Name="tipo1" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="ACIWEBModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="matricula" ColumnName="matricula" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="ap_paterno" ColumnName="ap_paterno" />
+                <ScalarProperty Name="ap_materno" ColumnName="ap_materno" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="imgpath" ColumnName="imgpath" />
+                <ScalarProperty Name="codequipo" ColumnName="codequipo" />
+                <ScalarProperty Name="codperfil" ColumnName="codperfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Derivaciones">
+            <EntityTypeMapping TypeName="ACIWEBModel.Derivaciones">
+              <MappingFragment StoreEntitySet="Derivaciones">
+                <ScalarProperty Name="fechaderivacion" ColumnName="fechaderivacion" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="matricula_nueva" ColumnName="matricula_nueva" />
+                <ScalarProperty Name="matricula_origen" ColumnName="matricula_origen" />
+                <ScalarProperty Name="idticket" ColumnName="idticket" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Responsable">
+            <EntityTypeMapping TypeName="ACIWEBModel.Responsable">
+              <MappingFragment StoreEntitySet="Responsable">
+                <ScalarProperty Name="responsable1" ColumnName="responsable" />
+                <ScalarProperty Name="codresponsable" ColumnName="codresponsable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

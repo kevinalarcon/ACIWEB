@@ -1,0 +1,96 @@
+﻿@*@model IEnumerable<ACI_WEB.Models.Ticket>*@
+
+@model IEnumerable<ACI_WEB.Models.MisTickets>
+
+@{
+    ViewBag.Title = "MostrarTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .tarjeta {
+        background-color: white;
+    }
+</style>
+
+<div class="col-md-12">
+    <div id="divMensaje" class="alert alert-success" hidden>
+        <button type="button" aria-hidden="true" class="close">
+            <i class="now-ui-icons ui-1_simple-remove"></i>
+        </button>
+        <label id="lblMensaje">Su ticket se ha registrado correctamente.</label>
+    </div>
+    <div class="card tarjeta">
+        <div class="card-header">
+            <h4 class="card-title"> Mis Tickets</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table">
+                    <thead class=" text-primary">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ticketdetalle.idticket)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ticketdetalle.asunto)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ticketdetalle.fechaingreso)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ticketdetalle.estado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ticketdetalle.comentariofinal)
+                            </th>
+                            <th>
+                                Equipo
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.ticketdetalle.idticket
+                                </td>
+                                <td>
+                                    @item.ticketdetalle.asunto
+                                </td>
+                                <td>
+                                    @item.ticketdetalle.fechaingreso
+                                </td>
+                                <td>
+                                    @if (item.ticketdetalle.estado == "Pendiente")
+                                    {
+                                        <span class="alert alert-warning">@item.ticketdetalle.estado</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="alert alert-success">@item.ticketdetalle.estado</span>
+                                    }
+
+                                </td>
+                                <td>
+                                    @item.ticketdetalle.comentariofinal
+                                </td>
+                                <td>
+                                    @item.equipodetalle.equipo1
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm" href="@Url.Action("VerTicketDetalle", "Ticket", new { idticket = @item.ticketdetalle.idticket })"><i class="now-ui-icons education_glasses"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

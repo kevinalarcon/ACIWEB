@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewBag.Title = "AtenderTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .tarjeta {
+        background-color: white;
+    }
+</style>
+
+
+<div class="col-md-12">
+    <div class="card tarjeta">
+        <div class="card-header">
+            <h5 class="title">Detalles del Ticket Ingresado</h5>
+            <input type="hidden" id="matricula" value="@Model.ticketdetalle.matricula" />
+            <input type="hidden" id="codequipo" value="@Model.ticketdetalle.codequipo" />
+            <input type="hidden" id="codaplicativo" value="@Model.ticketdetalle.codaplicativo" />
+            <input type="hidden" id="codtipo" value="@Model.ticketdetalle.codtipo" />
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                        <div class="form-group">
+                            <label>Ticket</label>
+                            <input id="idticket" type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.idticket">
+                        </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                        <div class="form-group">
+                            <label>Fecha de Ingreso</label>
+                            <input type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.fechaingreso">
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                        <div class="form-group">
+                            <label>Equipo Asignado</label>
+                            <input type="email" class="form-control" readonly="readonly" value="@Model.equipodetalle.equipo1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 pr-1">
+                        <div class="form-group">
+                            <label>Aplicativo / Cartera</label>
+                            <input type="text" class="form-control" readonly="readonly" value="@Model.aplicativodetalle.aplicativo1">
+                        </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                        <div class="form-group">
+                            <label>Tipo</label>
+                            <input type="text" class="form-control" readonly="readonly" value="@Model.tipodetalle.tipo1">
+                        </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                        <div class="form-group">
+                            @if (Model.ticketdetalle.codtipo == 4)
+                            {
+                                <label>Matricula Modelo</label>
+                                <input type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.matricula_modelo">
+                            }
+                            else
+                            {
+                                <label>Sub Tipo</label>
+                                <input type="text" class="form-control" readonly="readonly" value="">
+                            }
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Asunto</label>
+                            <input id="txtasunto" type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.asunto">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Detalle</label>
+                            <textarea id="txtdetalle" rows="4" cols="80" class="form-control" readonly="readonly">@Model.ticketdetalle.descripcion</textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-12">
+    <div class="card tarjeta">
+        <div class="card-header">
+            <h5 class="title">Atender Ticket</h5>
+        </div>
+        <div class="card-body">
+            <form>
+                @if (Model.ticketdetalle.codequipo == 1)
+                {
+                    if (Model.tipodetalle.codtipo == 2)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Causa Raiz de la Incidencia</label>
+                                    <input id="txtcausaraiz" type="text" class="form-control" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Accion Inmediata</label>
+                                    <input id="txtaccioninmediata" type="text" class="form-control" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Responsable</label>
+                                    <select id="comboboxResponsable" class="form-control" name="comboboxResponsable"></select>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else if (Model.ticketdetalle.codequipo == 2)
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Causa Raiz de la Incidencia</label>
+                                <input id="txtcausaraiz" type="text" class="form-control" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Accion Inmediata</label>
+                                <input id="txtaccioninmediata" type="text" class="form-control" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Cantidad de Clientes</label>
+                                <input id="txtcantidadclientes" type="number" class="form-control" value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Cantidad de Cuentas</label>
+                                <input id="txtcantidadcuentas" type="number" class="form-control" value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Deuda Vencida</label>
+                                <input id="txtdeudavencida" type="text" class="form-control" value="" onkeypress="return filterFloat(event,this);">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Deuda Total</label>
+                                <input id="txtdeudatotal" type="text" class="form-control" value="" onkeypress="return filterFloat(event,this);">
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Respuesta al Usuario</label>
+                            <textarea id="txtrespuesta" rows="4" cols="80" class="form-control" placeholder="Ingrese el detalle de la solución"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <button class="btn btn-success" id="btnAtender" type="button"><span class="glyphicon glyphicon-floppy-disk"></span> Atender</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

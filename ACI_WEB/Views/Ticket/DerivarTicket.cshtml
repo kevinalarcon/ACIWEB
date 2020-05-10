@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "DerivarTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .tarjeta {
+        background-color: white;
+    }
+</style>
+
+
+<div class="col-md-12">
+    <div class="card tarjeta">
+        <div class="card-header">
+            <h5 class="title">Detalles del Ticket Ingresado</h5>
+            <input type="hidden" id="codequipo" value="@Model.ticketdetalle.codequipo" />
+            <input type="hidden" id="matricula" value="@Model.ticketdetalle.matricula_responsable" />
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                        <div class="form-group">
+                            <label>Ticket</label>
+                            <input id="idticket" type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.idticket">
+                        </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                        <div class="form-group">
+                            <label>Fecha de Ingreso</label>
+                            <input type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.fechaingreso">
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                        <div class="form-group">
+                            <label>Equipo Asignado</label>
+                            <input type="email" class="form-control" readonly="readonly" value="@Model.equipodetalle.equipo1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 pr-1">
+                        <div class="form-group">
+                            <label>Aplicativo / Cartera</label>
+                            <input type="text" class="form-control" readonly="readonly" value="@Model.aplicativodetalle.aplicativo1">
+                        </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                        <div class="form-group">
+                            <label>Tipo</label>
+                            <input type="text" class="form-control" readonly="readonly" value="@Model.tipodetalle.tipo1">
+                        </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                        <div class="form-group">
+                            @if (Model.ticketdetalle.codtipo == 4)
+                            {
+                                <label>Matricula Modelo</label>
+                                <input type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.matricula_modelo">
+                            }
+                            else
+                            {
+                                <label>Sub Tipo</label>
+                                <input type="text" class="form-control" readonly="readonly" value="">
+                            }
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Asunto</label>
+                            <input id="txtasunto" type="text" class="form-control" readonly="readonly" value="@Model.ticketdetalle.asunto">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Detalle</label>
+                            <textarea id="txtdetalle" rows="4" cols="80" class="form-control" readonly="readonly">@Model.ticketdetalle.descripcion</textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-12">
+    <div class="card tarjeta">
+        <div class="card-header">
+            <h5 class="title">Derivar Ticket</h5>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>¿Qué tipo de derivación desea realizar?</label>
+                            <select id="comboboxTipoDerivacion" class="form-control" name="codtipo">
+                                <option value="-1">Elija un tipo de derivación</option>
+                                <option value="1">Derivar el ticket a alguien del mismo equipo al que pertenezco</option>
+                                <option value="2">Derivar el ticket a otro equipo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="divDerivacionMismoEquipo" hidden>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Nuevo Usuario</label>
+                                <select id="combonuevousuario" class="form-control" name="combonuevousuario"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Razon de Derivación</label>
+                                <textarea id="txtrazonderivacion1" rows="4" cols="80" class="form-control" placeholder="Detalle la razón por la cuál esta derivando este ticket a otro usuario" value="" name="descripcion1"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divDerivacionOtroEquipo" hidden>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nuevo Equipo</label>
+                                <select id="combonuevoequipo" class="form-control" name="combonuevoequipo"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nuevo Aplicativo / Cartera</label>
+                                <select id="combonuevoaplicativo" class="form-control" name="combonuevoaplicativo"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Razon de Derivación</label>
+                                <textarea id="txtrazonderivacion2" rows="4" cols="80" class="form-control" placeholder="Detalle la razón por la cuál esta derivando este ticket a otro equipo" value="" name="descripcion2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <button class="btn btn-success" id="btnDerivar" type="button"><span class="now-ui-icons arrows-1_refresh-69"></span> Derivar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
